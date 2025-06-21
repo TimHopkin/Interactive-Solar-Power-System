@@ -397,9 +397,12 @@
         <div class="header">
             <h1>Interactive Solar Power System</h1>
             <p>Complete 13.5kW Off-Grid Solution with 19.2kWh Battery Storage</p>
-            <div style="margin-top: 20px;">
+            <div style="margin-top: 20px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
                 <a href="blog.html" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block; border: 2px solid rgba(255, 255, 255, 0.3);">
                     📚 Read Complete System Guide
+                </a>
+                <a href="quote.html" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block; border: 2px solid rgba(255, 255, 255, 0.3);">
+                    💰 View Detailed Quote
                 </a>
             </div>
         </div>
@@ -900,10 +903,10 @@
                     tooltip.innerHTML = `<strong>${data.title}</strong><br><br>${data.content}`;
                     
                     const iconRect = e.target.getBoundingClientRect();
-                    const containerRect = document.querySelector('.diagram-container').getBoundingClientRect();
                     
-                    tooltip.style.left = (iconRect.right - containerRect.left + 10) + 'px';
-                    tooltip.style.top = (iconRect.top - containerRect.top) + 'px';
+                    // Position tooltip directly to the right of the icon
+                    tooltip.style.left = (iconRect.right + 10) + 'px';
+                    tooltip.style.top = (iconRect.top - 10) + 'px';
                     tooltip.classList.add('show');
                 }
             });
