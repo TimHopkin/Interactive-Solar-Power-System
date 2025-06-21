@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Quote - Complete Component Pricing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .navigation {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navigation h3 {
+            margin-bottom: 20px;
+            color: #1e40af;
+            font-size: 1.3rem;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .nav-item {
+            padding: 12px 16px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #475569;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: #e2e8f0;
+            border-left-color: #3b82f6;
+            color: #1e40af;
+            transform: translateX(5px);
+        }
+        
+        .content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .quote-summary {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .quote-summary h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .quote-summary p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .quote-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quote-table th {
+            background: #1e40af;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .quote-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        
+        .quote-table tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        
+        .quote-table tr:hover {
+            background: #f3f4f6;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+        
+        .product-details {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+        
+        .product-link {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+        
+        .product-link:hover {
+            background: #2563eb;
+        }
+        
+        .availability {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+        
+        .price-cell {
+            text-align: right;
+            font-weight: 600;
+            color: #059669;
+        }
+        
+        .total-row {
+            background: #f0fdf4 !important;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .total-row td {
+            border-top: 2px solid #10b981;
+            color: #065f46;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #1e40af;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #e2e8f0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .supplier-info {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .back-to-diagram {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 10px 10px 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-to-diagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .print-btn {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        }
+        
+        .category-header {
+            background: #f8fafc;
+            font-weight: bold;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .navigation {
+                padding: 20px;
+            }
+            
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quote-table {
+                font-size: 0.9rem;
+            }
+            
+            .quote-table th,
+            .quote-table td {
+                padding: 10px;
+            }
+        }
+        
+        @media print {
+            .navigation, .back-to-diagram {
+                display: none !important;
+            }
+            
+            .header {
+                background: none !important;
+                color: #1f2937 !important;
+                border-bottom: 3px solid #e2e8f0;
+            }
+            
+            .content {
+                box-shadow: none;
+                margin: 0;
+                padding: 20px;
+            }
+            
+            .quote-summary {
+                background: none !important;
+                color: #1f2937 !important;
+                border: 2px solid #e2e8f0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Solar System Quote</h1>
+            <p>Complete 13.5kW Off-Grid Solar System with 19.2kWh Battery Storage</p>
+            <div style="margin-top: 20px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="Solar_Array_Diagram_Updated.html" class="back-to-diagram">← Back to Interactive Diagram</a>
+                <a href="blog.html" class="back-to-diagram">📚 Complete System Guide</a>
+                <button onclick="window.print()" class="back-to-diagram print-btn" style="border: none; cursor: pointer;">🖨️ Print Quote</button>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <h3>📋 Quote Navigation</h3>
+            <div class="nav-grid">
+                <a href="#quote-summary" class="nav-item">💰 Quote Summary</a>
+                <a href="#solar-components" class="nav-item">☀️ Solar Components</a>
+                <a href="#battery-system" class="nav-item">🔋 Battery System</a>
+                <a href="#electrical-components" class="nav-item">⚡ Electrical Components</a>
+                <a href="#supplier-info" class="nav-item">🏪 Supplier Information</a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <section id="quote-summary" class="section">
+                <div class="quote-summary">
+                    <h2>£15,914.46</h2>
+                    <p>Total System Cost - Professional Grade Components with Warranties (Inc. VAT & Delivery)</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>What's Included:</h3>
+                    <ul>
+                        <li><strong>30 × 450W Solar Panels</strong> - Canadian Solar N-type TOPCon technology</li>
+                        <li><strong>4 × 4.8kWh Batteries</strong> - Pylon US5000 LiFePO4 with 15+ year lifespan</li>
+                        <li><strong>Complete Mounting System</strong> - Water ballast ground mount (no roof penetration)</li>
+                        <li><strong>Victron Power Electronics</strong> - Industry-leading inverter and charge controllers</li>
+                        <li><strong>Professional Safety Equipment</strong> - Isolators, fuses, and protection systems</li>
+                        <li><strong>Monitoring & Control</strong> - Cerbo GX with touchscreen display</li>
+                        <li><strong>All Cables & Connections</strong> - High-quality DC and AC wiring</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section id="detailed-quote" class="section">
+                <h2>📊 Detailed Component Breakdown</h2>
+                
+                <table class="quote-table">
+                    <thead>
+                        <tr>
+                            <th>Product & Specifications</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-header">
+                            <td colspan="4">🏠 INVERTER & POWER MANAGEMENT</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Victron MultiPlus-II 48/15000/200-100 230V (12000W)</div>
+                                <div class="product-details">Code: V-Multi-II-48-15000-200-100</div>
+                                <div class="availability">In stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=2902" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>1</td>
+                            <td class="price-cell">£1,685.88</td>
+                            <td class="price-cell">£1,685.88</td>
+                        </tr>
+                        
+                        <tr class="category-header">
+                            <td colspan="4">☀️ SOLAR PANELS & MOUNTING</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">450W Canadian Solar N-type TOPCon All Black Panels</div>
+                                <div class="product-details">Code: C450 - MCS Approved</div>
+                                <div class="availability">In Stock - Delivery 2-5 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3870" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>30</td>
+                            <td class="price-cell">£56.67</td>
+                            <td class="price-cell">£1,700.10</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Flat Roof/Ground Mount - Water Ballast tank - Gram-Box</div>
+                                <div class="product-details">Code: gram-box-tank - 210cm Max Panel length</div>
+                                <div class="availability">In stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3230" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>33</td>
+                            <td class="price-cell">£79.17</td>
+                            <td class="price-cell">£2,612.61</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">30mm Black End Clamps pair for Gram-Box</div>
+                                <div class="product-details">Code: gram-box-clamp-black-30mm-end</div>
+                                <div class="availability">In stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3232" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>6</td>
+                            <td class="price-cell">£3.33</td>
+                            <td class="price-cell">£19.98</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Black Mid Clamps pair for Gram-Box</div>
+                                <div class="product-details">Code: gram-box-clamp-black-mid</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3236" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>27</td>
+                            <td class="price-cell">£3.33</td>
+                            <td class="price-cell">£89.91</td>
+                        </tr>
+                        
+                        <tr class="category-header">
+                            <td colspan="4">🔌 DC ELECTRICAL COMPONENTS</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">STÄUBLI Branch connector MC4-Evo 2 DC1500V - Pair</div>
+                                <div class="product-details">Code: STAUBLI-BRANCH-MC4-EVO2-NEW - Male & Female splitter</div>
+                                <div class="availability">In Stock - Delivery 2-5 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3220" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>3</td>
+                            <td class="price-cell">£14.58</td>
+                            <td class="price-cell">£43.74</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">6mm Solar Cable - 100 Meter Reel/Drum</div>
+                                <div class="product-details">Code: 6mm-100m-roll</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=1959" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>2</td>
+                            <td class="price-cell">£95.83</td>
+                            <td class="price-cell">£191.66</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">STÄUBLI MC4-Evo 2 In-line Fuse 25A</div>
+                                <div class="product-details">Code: MC4-Evo-2-In-line-Fuse-25A - (PV-K/ILF3)</div>
+                                <div class="availability">In Stock - Delivery 2-5 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3812" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>3</td>
+                            <td class="price-cell">£20.83</td>
+                            <td class="price-cell">£62.49</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Projoy DC Isolator 32A 4 pole 2 string</div>
+                                <div class="product-details">Code: Projoy-32A-DC</div>
+                                <div class="availability">In stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3668" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>3</td>
+                            <td class="price-cell">£20.83</td>
+                            <td class="price-cell">£62.49</td>
+                        </tr>
+                        
+                        <tr class="category-header">
+                            <td colspan="4">⚡ CHARGE CONTROLLERS</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">85A Victron MPPT SmartSolar MPPT250-85</div>
+                                <div class="product-details">Code: V-Smart-MPPT250-85-VECan - 250Voc PV Controller VE.Can TR for 12V/24V/48V</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=1786" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>3</td>
+                            <td class="price-cell">£326.47</td>
+                            <td class="price-cell">£979.41</td>
+                        </tr>
+                        
+                        <tr class="category-header">
+                            <td colspan="4">🔋 BATTERY SYSTEM</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Pylon 4.8kWh US5000-1C LiFePO Battery - 48V Lithium</div>
+                                <div class="product-details">Code: PYLON-US5000 - Latest Model</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=2717" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>4</td>
+                            <td class="price-cell">£828.33</td>
+                            <td class="price-cell">£3,313.32</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Rack Mount battery Floor Standing Data Cabinet 18U</div>
+                                <div class="product-details">Code: pylon-data-cabinet-18U - 600mmW × 600mmD x 902mmH</div>
+                                <div class="availability">In stock - Delivery 2-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3408" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>1</td>
+                            <td class="price-cell">£385.50</td>
+                            <td class="price-cell">£385.50</td>
+                        </tr>
+                        
+                        <tr class="category-header">
+                            <td colspan="4">🔧 POWER DISTRIBUTION & SAFETY</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Victron Lynx Power In (M8)</div>
+                                <div class="product-details">Code: V-LYNX-PWRIN</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=2029" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>3</td>
+                            <td class="price-cell">£90.44</td>
+                            <td class="price-cell">£271.32</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">GENERIC MEGA FUSE BOLT DOWN 100A 70V DC YELLOW M8</div>
+                                <div class="product-details">Code: GENMEGA-fuse-100A-70V</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=2677" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>3</td>
+                            <td class="price-cell">£7.50</td>
+                            <td class="price-cell">£22.50</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">LITTELFUSE MEGA FUSE BOLT DOWN 125A 70V GREEN M8</div>
+                                <div class="product-details">Code: MEGA-fuse-125A-70V - 0998125.UX-2M8</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3374" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>4</td>
+                            <td class="price-cell">£8.33</td>
+                            <td class="price-cell">£33.32</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">275A Victron Battery ON/OFF Switch in housing</div>
+                                <div class="product-details">Code: V-275a-battery-ON-OFF-switch-knob - M10 terminals with removable knob</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3313" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>3</td>
+                            <td class="price-cell">£22.53</td>
+                            <td class="price-cell">£67.59</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">600A Battery Isolator Switch - BEP 720 48V</div>
+                                <div class="product-details">Code: BEP-720 - M12 Terminals</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3577" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>1</td>
+                            <td class="price-cell">£70.83</td>
+                            <td class="price-cell">£70.83</td>
+                        </tr>
+                        
+                        <tr class="category-header">
+                            <td colspan="4">🔌 CABLING & CONNECTIONS</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">35mm Cable - M8 Lug to Bare Wire - 1 Meter</div>
+                                <div class="product-details">Code: 35mm-cable-M8lugtobare</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=1399" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>6</td>
+                            <td class="price-cell">£12.00</td>
+                            <td class="price-cell">£72.00</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">95mm Cable - M8 to M8 Lugs - 1 Meter</div>
+                                <div class="product-details">Code: 95mm-100cm-cable-M8-M8</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3822" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>2</td>
+                            <td class="price-cell">£25.00</td>
+                            <td class="price-cell">£50.00</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">95mm Cable - M8 to M10 Lugs - 50cm</div>
+                                <div class="product-details">Code: 95mm-50cm-cable-M8-M10</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3823" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>4</td>
+                            <td class="price-cell">£16.67</td>
+                            <td class="price-cell">£66.68</td>
+                        </tr>
+                        
+                        <tr class="category-header">
+                            <td colspan="4">📱 MONITORING & CONTROL</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">SALE - Victron Cerbo GX MK2 - System controller</div>
+                                <div class="product-details">Code: V-CERBO-GX-MK2</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=3372" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>1</td>
+                            <td class="price-cell">£150.57</td>
+                            <td class="price-cell">£150.57</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Victron GX Touch 50 - Cerbo Display</div>
+                                <div class="product-details">Code: V-GXTOUCH50</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=1861" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>1</td>
+                            <td class="price-cell">£133.56</td>
+                            <td class="price-cell">£133.56</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Victron GX Touch 50 Wall Mount</div>
+                                <div class="product-details">Code: V-GXT50WallMount</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=2595" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>1</td>
+                            <td class="price-cell">£8.40</td>
+                            <td class="price-cell">£8.40</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Communication Cable RJ45 Cat 5 - 2 metres</div>
+                                <div class="product-details">Code: C5-UTP2</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=1976" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>3</td>
+                            <td class="price-cell">£4.17</td>
+                            <td class="price-cell">£12.51</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Victron VE Can to CAN-bus BMS Cable 5 metre Type A</div>
+                                <div class="product-details">Code: V-Can-Bus-TypeA-5m</div>
+                                <div class="availability">In Stock - Delivery 1-3 days</div>
+                                <br><a href="https://www.bimblesolar.com/index.php?route=product/product&product_id=2225" class="product-link" target="_blank">View Product</a>
+                            </td>
+                            <td>1</td>
+                            <td class="price-cell">£9.80</td>
+                            <td class="price-cell">£9.80</td>
+                        </tr>
+                        
+                        <tr class="category-header">
+                            <td colspan="4">🛠️ PROFESSIONAL SERVICES</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="product-name">Victron Pre-Programming Service</div>
+                                <div class="product-details">Professional system configuration and setup</div>
+                                <div class="availability">Available</div>
+                            </td>
+                            <td>1</td>
+                            <td class="price-cell">£350.00</td>
+                            <td class="price-cell">£350.00</td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="3"><strong>SUB TOTAL (Ex. VAT & Delivery)</strong></td>
+                            <td class="price-cell"><strong>£12,466.17</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><strong>Delivery (Standard UK - Panels within 1 week)</strong></td>
+                            <td class="price-cell"><strong>£795.88</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><strong>VAT (20%)</strong></td>
+                            <td class="price-cell"><strong>£2,652.41</strong></td>
+                        </tr>
+                        <tr class="total-row" style="background: #065f46 !important; color: white;">
+                            <td colspan="3"><strong>TOTAL SYSTEM COST (Inc. VAT & Delivery)</strong></td>
+                            <td class="price-cell"><strong>£15,914.46</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section id="supplier-info" class="section">
+                <h2>🏪 Supplier Information</h2>
+                
+                <div class="supplier-info">
+                    <h3>Bimble Solar - Professional Off-Grid Specialists</h3>
+                    <p><strong>Website:</strong> <a href="https://www.bimblesolar.com" target="_blank">bimblesolar.com</a></p>
+                    <p><strong>Location:</strong> Near Lewes, Sussex, UK</p>
+                    <p><strong>Services:</strong> Complete solar system supply, technical support, and professional guidance</p>
+                    <p><strong>Delivery:</strong> Most components available for delivery within 1-5 days</p>
+                    <p><strong>Collection:</strong> Available from warehouse near Lewes for local customers</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>📋 Next Steps:</h3>
+                    <ol>
+                        <li><strong>Contact Bimble Solar</strong> for current pricing and availability</li>
+                        <li><strong>Arrange professional site survey</strong> with MCS-certified installer</li>
+                        <li><strong>Finalize system design</strong> based on your specific location and requirements</li>
+                        <li><strong>Obtain necessary permits</strong> and grid connection approvals</li>
+                        <li><strong>Schedule installation</strong> with certified professionals</li>
+                    </ol>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>💡 Payment & Financing:</h3>
+                    <ul>
+                        <li><strong>Component Cost:</strong> £15,914.46 (Inc. VAT & Delivery)</li>
+                        <li><strong>Installation Costs:</strong> Additional professional installation typically £2,000-4,000</li>
+                        <li><strong>Total Investment:</strong> Complete turnkey system £18,000-20,000</li>
+                        <li><strong>Financing Options:</strong> Many installers offer financing packages</li>
+                        <li><strong>Payback Period:</strong> 6-8 years with current energy prices and export rates</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

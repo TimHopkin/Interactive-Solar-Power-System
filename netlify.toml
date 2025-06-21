@@ -2,13 +2,8 @@
   publish = "."
   
 [[redirects]]
-  from = "/"
-  to = "/Original%20HTML.html"
-  status = 200
-
-[[redirects]]
-  from = "/diagram"
-  to = "/Solar_Array_Diagram_Updated.html"
+  from = "/home"
+  to = "/home.html"
   status = 200
 
 [[redirects]]

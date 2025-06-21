@@ -899,11 +899,11 @@
                     const data = tooltipData[componentClass];
                     tooltip.innerHTML = `<strong>${data.title}</strong><br><br>${data.content}`;
                     
-                    const iconRect = e.target.getBoundingClientRect();
+                    const rect = component.getBoundingClientRect();
                     const containerRect = document.querySelector('.diagram-container').getBoundingClientRect();
                     
-                    tooltip.style.left = (iconRect.right - containerRect.left + 10) + 'px';
-                    tooltip.style.top = (iconRect.top - containerRect.top) + 'px';
+                    tooltip.style.left = (rect.right - containerRect.left + 10) + 'px';
+                    tooltip.style.top = (rect.top - containerRect.top) + 'px';
                     tooltip.classList.add('show');
                 }
             });

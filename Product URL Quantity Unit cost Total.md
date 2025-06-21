@@ -105,3 +105,7 @@ Availability: In Stock - Delivery 1-3 days or collect from near Lewes"	https://w
 
 Code:
 Availability:"		1	£350.00	£350.00
+Sub Total:				£12,466.17
+Standard - UK - Panels usually within 1 week (see delivery info for your postcode):				£795.88
+VAT:				£2,652.41
+Total:				£15,914.46
