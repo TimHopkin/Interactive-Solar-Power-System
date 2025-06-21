@@ -903,10 +903,10 @@
                     tooltip.innerHTML = `<strong>${data.title}</strong><br><br>${data.content}`;
                     
                     const iconRect = e.target.getBoundingClientRect();
-                    const containerRect = document.querySelector('.diagram-container').getBoundingClientRect();
                     
-                    tooltip.style.left = (iconRect.right - containerRect.left + 10) + 'px';
-                    tooltip.style.top = (iconRect.top - containerRect.top) + 'px';
+                    // Position tooltip directly to the right of the icon
+                    tooltip.style.left = (iconRect.right + 10) + 'px';
+                    tooltip.style.top = (iconRect.top - 10) + 'px';
                     tooltip.classList.add('show');
                 }
             });
