@@ -518,55 +518,62 @@
                 <path d="M 0 10 Q 35 25 70 30" class="energy-arrow-power" marker-end="url(#arrowhead-power)" fill="none"/>
                 <!-- Moving energy flow -->
                 <path d="M 0 10 Q 35 25 70 30" class="energy-flow-power" fill="none"/>
-                <text x="35" y="15" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">DC Power</text>
             </svg>
+            <!-- DC Power label positioned clearly -->
+            <div style="position: absolute; top: 155px; left: 350px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">DC Power</div>
             
             <!-- DC Isolators to MPPT: (540,190) to (580,170) -->
             <svg class="energy-arrow" style="top: 170px; left: 540px; width: 40px; height: 20px;">
                 <line x1="0" y1="20" x2="40" y2="0" class="energy-arrow-power" marker-end="url(#arrowhead-power)"/>
                 <line x1="0" y1="20" x2="40" y2="0" class="energy-flow-power"/>
-                <text x="20" y="12" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">DC</text>
             </svg>
+            <!-- DC label positioned clearly -->
+            <div style="position: absolute; top: 172px; left: 545px; font-size: 8px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">DC</div>
             
-            <!-- MPPT to Battery: (660,260) to (660,280) - Vertical -->
-            <svg class="energy-arrow" style="top: 260px; left: 650px; width: 20px; height: 20px;">
-                <line x1="10" y1="0" x2="10" y2="20" class="energy-arrow-power" marker-end="url(#arrowhead-power)"/>
-                <line x1="10" y1="0" x2="10" y2="20" class="energy-flow-power"/>
-                <text x="25" y="12" font-size="9" fill="#2563eb" font-weight="bold">48V DC</text>
+            <!-- MPPT to Battery: Curved around MPPT right edge -->
+            <svg class="energy-arrow" style="top: 250px; left: 720px; width: 40px; height: 50px;">
+                <path d="M 0 10 Q 20 0 Q 40 20 40 40" class="energy-arrow-power" marker-end="url(#arrowhead-power)" fill="none"/>
+                <path d="M 0 10 Q 20 0 Q 40 20 40 40" class="energy-flow-power" fill="none"/>
             </svg>
+            <!-- 48V DC label positioned away from line -->
+            <div style="position: absolute; top: 270px; left: 750px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">48V DC</div>
             
             <!-- Battery to DC Distribution: (740,380) to (800,410) -->
             <svg class="energy-arrow" style="top: 370px; left: 740px; width: 60px; height: 40px;">
                 <path d="M 0 10 Q 30 25 60 40" class="energy-arrow-power" marker-end="url(#arrowhead-power)" fill="none"/>
                 <path d="M 0 10 Q 30 25 60 40" class="energy-flow-power" fill="none"/>
-                <text x="30" y="20" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">DC Dist</text>
             </svg>
+            <!-- DC Dist label positioned clearly -->
+            <div style="position: absolute; top: 380px; left: 755px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">DC Dist</div>
             
             <!-- DC Distribution to Inverter: (940,410) to (1000,360) -->
             <svg class="energy-arrow" style="top: 360px; left: 940px; width: 60px; height: 50px;">
                 <path d="M 0 50 Q 30 25 60 0" class="energy-arrow-power" marker-end="url(#arrowhead-power)" fill="none"/>
                 <path d="M 0 50 Q 30 25 60 0" class="energy-flow-power" fill="none"/>
-                <text x="30" y="30" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">48V DC</text>
             </svg>
+            <!-- 48V DC label positioned clearly -->
+            <div style="position: absolute; top: 375px; left: 955px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">48V DC</div>
             
             <!-- Inverter to House Load: (1180,360) to (1220,370) -->
             <svg class="energy-arrow" style="top: 355px; left: 1180px; width: 40px; height: 20px;">
                 <line x1="0" y1="5" x2="40" y2="15" class="energy-arrow-power" marker-end="url(#arrowhead-power)"/>
                 <line x1="0" y1="5" x2="40" y2="15" class="energy-flow-power"/>
-                <text x="20" y="8" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">230V AC</text>
             </svg>
+            <!-- 230V AC label positioned clearly -->
+            <div style="position: absolute; top: 350px; left: 1185px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">230V AC</div>
             
-            <!-- Inverter to Grid: (1090,260) to (1280,200) -->
-            <svg class="energy-arrow" style="top: 200px; left: 1090px; width: 190px; height: 60px;">
+            <!-- Inverter to Grid: Higher curve to avoid components -->
+            <svg class="energy-arrow" style="top: 150px; left: 1090px; width: 190px; height: 110px;">
                 <defs>
                     <marker id="arrowhead-power-diag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                         <polygon points="0 0, 10 3.5, 0 7" class="energy-arrow-power"/>
                     </marker>
                 </defs>
-                <path d="M 0 60 Q 95 30 190 0" class="energy-arrow-power" marker-end="url(#arrowhead-power-diag)" fill="none"/>
-                <path d="M 0 60 Q 95 30 190 0" class="energy-flow-power" fill="none"/>
-                <text x="95" y="35" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">Grid Export</text>
+                <path d="M 0 110 Q 95 20 190 50" class="energy-arrow-power" marker-end="url(#arrowhead-power-diag)" fill="none"/>
+                <path d="M 0 110 Q 95 20 190 50" class="energy-flow-power" fill="none"/>
             </svg>
+            <!-- Grid Export label positioned clearly -->
+            <div style="position: absolute; top: 170px; left: 1150px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">Grid Export</div>
             
             <!-- Control Signals - Precise Connections -->
             <!-- Control System to Battery: (660,520) to (660,480) - Vertical -->
@@ -580,22 +587,25 @@
                 <line x1="10" y1="40" x2="10" y2="0" class="energy-arrow-control" marker-end="url(#arrowhead-control)"/>
                 <!-- Moving control signal -->
                 <line x1="10" y1="40" x2="10" y2="0" class="energy-flow-control"/>
-                <text x="25" y="22" font-size="8" fill="#0891b2" font-weight="bold">BMS</text>
             </svg>
+            <!-- BMS label positioned clearly -->
+            <div style="position: absolute; top: 495px; left: 675px; font-size: 8px; font-weight: bold; color: #0891b2; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">BMS</div>
             
-            <!-- Control System to Inverter: (740,600) to (1000,360) -->
-            <svg class="energy-arrow" style="top: 360px; left: 740px; width: 260px; height: 240px;">
-                <path d="M 0 240 Q 130 120 260 0" class="energy-arrow-control" marker-end="url(#arrowhead-control)" fill="none"/>
-                <path d="M 0 240 Q 130 120 260 0" class="energy-flow-control" fill="none"/>
-                <text x="130" y="130" text-anchor="middle" font-size="8" fill="#0891b2" font-weight="bold">VE.Can Control</text>
+            <!-- Control System to Inverter: Route below components -->
+            <svg class="energy-arrow" style="top: 500px; left: 740px; width: 260px; height: 100px;">
+                <path d="M 0 80 Q 130 20 260 20" class="energy-arrow-control" marker-end="url(#arrowhead-control)" fill="none"/>
+                <path d="M 0 80 Q 130 20 260 20" class="energy-flow-control" fill="none"/>
             </svg>
+            <!-- VE.Can Control label positioned clearly -->
+            <div style="position: absolute; top: 510px; left: 850px; font-size: 8px; font-weight: bold; color: #0891b2; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">VE.Can Control</div>
             
-            <!-- Control System to MPPT: (580,520) to (580,260) - Vertical -->
-            <svg class="energy-arrow" style="top: 260px; left: 570px; width: 20px; height: 260px;">
-                <line x1="10" y1="260" x2="10" y2="0" class="energy-arrow-control" marker-end="url(#arrowhead-control)"/>
-                <line x1="10" y1="260" x2="10" y2="0" class="energy-flow-control"/>
-                <text x="25" y="130" font-size="8" fill="#0891b2" font-weight="bold" transform="rotate(-90 25 130)">MPPT Control</text>
+            <!-- Control System to MPPT: Moved left for clearance -->
+            <svg class="energy-arrow" style="top: 260px; left: 540px; width: 60px; height: 260px;">
+                <path d="M 20 260 Q 5 130 40 0" class="energy-arrow-control" marker-end="url(#arrowhead-control)" fill="none"/>
+                <path d="M 20 260 Q 5 130 40 0" class="energy-flow-control" fill="none"/>
             </svg>
+            <!-- MPPT Control label positioned clearly -->
+            <div style="position: absolute; top: 380px; left: 520px; font-size: 8px; font-weight: bold; color: #0891b2; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px; transform: rotate(-90deg); transform-origin: center;">MPPT Control</div>
         </div>
         
         <div class="info-boxes">
@@ -979,6 +989,12 @@
                     stroke-width: 2.5;
                     stroke-dasharray: 10 6;
                 }
+                
+                /* Responsive label adjustments */
+                .diagram-container > div[style*="position: absolute"][style*="background: rgba"] {
+                    font-size: 7px !important;
+                    padding: 1px 4px !important;
+                }
             }
             
             @media (max-width: 1400px) {
@@ -993,6 +1009,14 @@
                 color: #2563eb;
                 font-weight: bold;
                 pointer-events: none;
+            }
+            
+            /* Enhanced label styling for better visibility */
+            .diagram-container > div[style*="position: absolute"][style*="background: rgba"] {
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                white-space: nowrap;
+                z-index: 15;
+                backdrop-filter: blur(2px);
             }
         `;
         document.head.appendChild(style);
