@@ -45,6 +45,13 @@
             opacity: 0.9;
         }
         
+        .header a:hover {
+            background: rgba(255, 255, 255, 0.3) !important;
+            border-color: rgba(255, 255, 255, 0.5) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        
         .diagram-container {
             position: relative;
             padding: 40px;
@@ -390,6 +397,11 @@
         <div class="header">
             <h1>Interactive Solar Power System</h1>
             <p>Complete 13.5kW Off-Grid Solution with 19.2kWh Battery Storage</p>
+            <div style="margin-top: 20px;">
+                <a href="blog.html" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block; border: 2px solid rgba(255, 255, 255, 0.3);">
+                    📚 Read Complete System Guide
+                </a>
+            </div>
         </div>
         
         <div class="diagram-container">
@@ -562,18 +574,18 @@
             <!-- 230V AC label positioned clearly -->
             <div style="position: absolute; top: 350px; left: 1185px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">230V AC</div>
             
-            <!-- Inverter to Grid: Connect precisely to left edge of Grid Supply -->
-            <svg class="energy-arrow" style="top: 140px; left: 1090px; width: 130px; height: 80px;">
+            <!-- Inverter to Grid: Start from top centre of Hybrid Inverter -->
+            <svg class="energy-arrow" style="top: 160px; left: 1090px; width: 130px; height: 100px;">
                 <defs>
                     <marker id="arrowhead-power-diag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                         <polygon points="0 0, 10 3.5, 0 7" class="energy-arrow-power"/>
                     </marker>
                 </defs>
-                <path d="M 0 80 Q 65 30 130 40" class="energy-arrow-power" marker-end="url(#arrowhead-power-diag)" fill="none"/>
-                <path d="M 0 80 Q 65 30 130 40" class="energy-flow-power" fill="none"/>
+                <path d="M 0 100 Q 65 50 130 0" class="energy-arrow-power" marker-end="url(#arrowhead-power-diag)" fill="none"/>
+                <path d="M 0 100 Q 65 50 130 0" class="energy-flow-power" fill="none"/>
             </svg>
             <!-- Grid Export label positioned clearly -->
-            <div style="position: absolute; top: 170px; left: 1150px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">Grid Export</div>
+            <div style="position: absolute; top: 210px; left: 1120px; font-size: 9px; font-weight: bold; color: #2563eb; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">Grid Export</div>
             
             <!-- Control Signals - Precise Connections -->
             <!-- Control System to Battery: (660,520) to (660,480) - Vertical -->
@@ -591,13 +603,13 @@
             <!-- BMS label positioned clearly -->
             <div style="position: absolute; top: 495px; left: 675px; font-size: 8px; font-weight: bold; color: #0891b2; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">BMS</div>
             
-            <!-- Control System to Inverter: Connect to bottom-left of Hybrid Inverter -->
-            <svg class="energy-arrow" style="top: 460px; left: 740px; width: 260px; height: 40px;">
-                <path d="M 0 40 Q 130 10 260 0" class="energy-arrow-control" marker-end="url(#arrowhead-control)" fill="none"/>
-                <path d="M 0 40 Q 130 10 260 0" class="energy-flow-control" fill="none"/>
+            <!-- Control System to Inverter: Route below to avoid DC Distribution overlap -->
+            <svg class="energy-arrow" style="top: 460px; left: 740px; width: 350px; height: 120px;">
+                <path d="M 0 120 Q 175 0 350 0" class="energy-arrow-control" marker-end="url(#arrowhead-control)" fill="none"/>
+                <path d="M 0 120 Q 175 0 350 0" class="energy-flow-control" fill="none"/>
             </svg>
             <!-- VE.Can Control label positioned clearly -->
-            <div style="position: absolute; top: 510px; left: 850px; font-size: 8px; font-weight: bold; color: #0891b2; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">VE.Can Control</div>
+            <div style="position: absolute; top: 500px; left: 900px; font-size: 8px; font-weight: bold; color: #0891b2; background: rgba(248, 250, 252, 0.9); padding: 2px 6px; border-radius: 4px;">VE.Can Control</div>
             
             <!-- Control System to MPPT: Connect properly to control system top edge -->
             <svg class="energy-arrow" style="top: 260px; left: 560px; width: 40px; height: 260px;">
