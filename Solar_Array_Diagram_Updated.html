@@ -132,12 +132,32 @@
             background: #475569;
         }
         
+        .grid-connection .component-title {
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        
+        .grid-connection .component-details {
+            font-size: 9px;
+            line-height: 1.2;
+        }
+        
         .house-load {
             top: 320px;
             left: 1220px;
             width: 120px;
             height: 100px;
             background: #059669;
+        }
+        
+        .house-load .component-title {
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        
+        .house-load .component-details {
+            font-size: 9px;
+            line-height: 1.2;
         }
         
         .info-icon {
@@ -198,50 +218,64 @@
         .energy-arrow {
             position: absolute;
             z-index: 10;
+            pointer-events: none;
         }
         
         .energy-arrow-power {
-            stroke: #2563eb;
-            stroke-width: 3;
-            fill: #2563eb;
-            filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.3));
+            stroke: #e2e8f0;
+            stroke-width: 1;
+            fill: #e2e8f0;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.3;
         }
         
         .energy-arrow-control {
+            stroke: #e2e8f0;
+            stroke-width: 1;
+            fill: #e2e8f0;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.3;
+        }
+        
+        .energy-flow-power {
+            stroke: #2563eb;
+            stroke-width: 5;
+            fill: none;
+            stroke-dasharray: 20 10;
+            stroke-linecap: round;
+            animation: powerFlow 2s linear infinite;
+            opacity: 1;
+            filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.4));
+        }
+        
+        .energy-flow-control {
             stroke: #0891b2;
-            stroke-width: 2;
-            stroke-dasharray: 5,5;
-            fill: #0891b2;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 12 8;
+            stroke-linecap: round;
+            animation: controlFlow 4s linear infinite;
+            opacity: 0.9;
             filter: drop-shadow(0 2px 4px rgba(8, 145, 178, 0.3));
         }
         
-        .energy-arrow-power-animated {
-            animation: energyFlow 2s ease-in-out infinite;
-        }
-        
-        .energy-arrow-control-animated {
-            animation: controlFlow 3s ease-in-out infinite;
-        }
-        
-        @keyframes energyFlow {
-            0%, 100% { 
-                stroke-opacity: 0.7;
-                fill-opacity: 0.7;
+        @keyframes powerFlow {
+            0% { 
+                stroke-dashoffset: 30;
             }
-            50% { 
-                stroke-opacity: 1;
-                fill-opacity: 1;
+            100% { 
+                stroke-dashoffset: 0;
             }
         }
         
         @keyframes controlFlow {
-            0%, 100% { 
-                stroke-opacity: 0.5;
-                fill-opacity: 0.5;
+            0% { 
+                stroke-dashoffset: 20;
             }
-            50% { 
-                stroke-opacity: 0.8;
-                fill-opacity: 0.8;
+            100% { 
+                stroke-dashoffset: 0;
             }
         }
         
@@ -472,72 +506,95 @@
                 </div>
             </div>
             
-            <!-- Energy Flow Arrows -->
-            <!-- Solar to DC Isolators -->
-            <svg class="energy-arrow" style="top: 174px; left: 330px; width: 70px; height: 12px;">
+            <!-- Energy Flow System - Precise Component Connections -->
+            <!-- Solar to DC Isolators: (330,160) to (400,190) -->
+            <svg class="energy-arrow" style="top: 150px; left: 330px; width: 70px; height: 40px;">
                 <defs>
                     <marker id="arrowhead-power" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                         <polygon points="0 0, 10 3.5, 0 7" class="energy-arrow-power"/>
                     </marker>
                 </defs>
-                <line x1="0" y1="6" x2="60" y2="6" class="energy-arrow-power energy-arrow-power-animated" marker-end="url(#arrowhead-power)"/>
-                <text x="30" y="4" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">DC Power</text>
+                <!-- Static arrow structure -->
+                <path d="M 0 10 Q 35 25 70 30" class="energy-arrow-power" marker-end="url(#arrowhead-power)" fill="none"/>
+                <!-- Moving energy flow -->
+                <path d="M 0 10 Q 35 25 70 30" class="energy-flow-power" fill="none"/>
+                <text x="35" y="15" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">DC Power</text>
             </svg>
             
-            <!-- DC Isolators to MPPT -->
-            <svg class="energy-arrow" style="top: 174px; left: 540px; width: 40px; height: 12px;">
-                <line x1="0" y1="6" x2="30" y2="6" class="energy-arrow-power energy-arrow-power-animated" marker-end="url(#arrowhead-power)"/>
+            <!-- DC Isolators to MPPT: (540,190) to (580,170) -->
+            <svg class="energy-arrow" style="top: 170px; left: 540px; width: 40px; height: 20px;">
+                <line x1="0" y1="20" x2="40" y2="0" class="energy-arrow-power" marker-end="url(#arrowhead-power)"/>
+                <line x1="0" y1="20" x2="40" y2="0" class="energy-flow-power"/>
+                <text x="20" y="12" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">DC</text>
             </svg>
             
-            <!-- MPPT to Battery (vertical) -->
-            <svg class="energy-arrow" style="top: 260px; left: 654px; width: 12px; height: 20px;">
-                <line x1="6" y1="0" x2="6" y2="15" class="energy-arrow-power energy-arrow-power-animated" marker-end="url(#arrowhead-power)"/>
-                <text x="14" y="10" font-size="8" fill="#2563eb" font-weight="bold">48V DC</text>
+            <!-- MPPT to Battery: (660,260) to (660,280) - Vertical -->
+            <svg class="energy-arrow" style="top: 260px; left: 650px; width: 20px; height: 20px;">
+                <line x1="10" y1="0" x2="10" y2="20" class="energy-arrow-power" marker-end="url(#arrowhead-power)"/>
+                <line x1="10" y1="0" x2="10" y2="20" class="energy-flow-power"/>
+                <text x="25" y="12" font-size="9" fill="#2563eb" font-weight="bold">48V DC</text>
             </svg>
             
-            <!-- Battery to DC Distribution -->
-            <svg class="energy-arrow" style="top: 414px; left: 740px; width: 60px; height: 12px;">
-                <line x1="0" y1="6" x2="50" y2="6" class="energy-arrow-power energy-arrow-power-animated" marker-end="url(#arrowhead-power)"/>
-                <text x="30" y="4" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">DC Dist</text>
+            <!-- Battery to DC Distribution: (740,380) to (800,410) -->
+            <svg class="energy-arrow" style="top: 370px; left: 740px; width: 60px; height: 40px;">
+                <path d="M 0 10 Q 30 25 60 40" class="energy-arrow-power" marker-end="url(#arrowhead-power)" fill="none"/>
+                <path d="M 0 10 Q 30 25 60 40" class="energy-flow-power" fill="none"/>
+                <text x="30" y="20" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">DC Dist</text>
             </svg>
             
-            <!-- DC Distribution to Inverter -->
-            <svg class="energy-arrow" style="top: 394px; left: 940px; width: 60px; height: 12px;">
-                <line x1="0" y1="6" x2="50" y2="6" class="energy-arrow-power energy-arrow-power-animated" marker-end="url(#arrowhead-power)"/>
-                <text x="30" y="4" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">48V DC</text>
+            <!-- DC Distribution to Inverter: (940,410) to (1000,360) -->
+            <svg class="energy-arrow" style="top: 360px; left: 940px; width: 60px; height: 50px;">
+                <path d="M 0 50 Q 30 25 60 0" class="energy-arrow-power" marker-end="url(#arrowhead-power)" fill="none"/>
+                <path d="M 0 50 Q 30 25 60 0" class="energy-flow-power" fill="none"/>
+                <text x="30" y="30" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">48V DC</text>
             </svg>
             
-            <!-- Inverter to House Load -->
-            <svg class="energy-arrow" style="top: 374px; left: 1180px; width: 40px; height: 12px;">
-                <line x1="0" y1="6" x2="30" y2="6" class="energy-arrow-power energy-arrow-power-animated" marker-end="url(#arrowhead-power)"/>
-                <text x="20" y="4" text-anchor="middle" font-size="8" fill="#2563eb" font-weight="bold">230V AC</text>
+            <!-- Inverter to House Load: (1180,360) to (1220,370) -->
+            <svg class="energy-arrow" style="top: 355px; left: 1180px; width: 40px; height: 20px;">
+                <line x1="0" y1="5" x2="40" y2="15" class="energy-arrow-power" marker-end="url(#arrowhead-power)"/>
+                <line x1="0" y1="5" x2="40" y2="15" class="energy-flow-power"/>
+                <text x="20" y="8" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">230V AC</text>
             </svg>
             
-            <!-- Inverter to Grid (diagonal) -->
-            <svg class="energy-arrow" style="top: 180px; left: 1200px; width: 70px; height: 80px;">
+            <!-- Inverter to Grid: (1090,260) to (1280,200) -->
+            <svg class="energy-arrow" style="top: 200px; left: 1090px; width: 190px; height: 60px;">
                 <defs>
                     <marker id="arrowhead-power-diag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                         <polygon points="0 0, 10 3.5, 0 7" class="energy-arrow-power"/>
                     </marker>
                 </defs>
-                <line x1="5" y1="75" x2="45" y2="10" class="energy-arrow-power energy-arrow-power-animated" marker-end="url(#arrowhead-power-diag)"/>
-                <text x="35" y="50" font-size="8" fill="#2563eb" font-weight="bold">Grid Tie</text>
+                <path d="M 0 60 Q 95 30 190 0" class="energy-arrow-power" marker-end="url(#arrowhead-power-diag)" fill="none"/>
+                <path d="M 0 60 Q 95 30 190 0" class="energy-flow-power" fill="none"/>
+                <text x="95" y="35" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">Grid Export</text>
             </svg>
             
-            <!-- Control System to Battery (vertical control signal) -->
-            <svg class="energy-arrow" style="top: 480px; left: 654px; width: 12px; height: 40px;">
+            <!-- Control Signals - Precise Connections -->
+            <!-- Control System to Battery: (660,520) to (660,480) - Vertical -->
+            <svg class="energy-arrow" style="top: 480px; left: 650px; width: 20px; height: 40px;">
                 <defs>
                     <marker id="arrowhead-control" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
                         <polygon points="0 0, 8 3, 0 6" class="energy-arrow-control"/>
                     </marker>
                 </defs>
-                <line x1="6" y1="35" x2="6" y2="5" class="energy-arrow-control energy-arrow-control-animated" marker-end="url(#arrowhead-control)"/>
+                <!-- Static control arrow -->
+                <line x1="10" y1="40" x2="10" y2="0" class="energy-arrow-control" marker-end="url(#arrowhead-control)"/>
+                <!-- Moving control signal -->
+                <line x1="10" y1="40" x2="10" y2="0" class="energy-flow-control"/>
+                <text x="25" y="22" font-size="8" fill="#0891b2" font-weight="bold">BMS</text>
             </svg>
             
-            <!-- Control System to Inverter (horizontal control signal) -->
-            <svg class="energy-arrow" style="top: 434px; left: 740px; width: 260px; height: 12px;">
-                <line x1="0" y1="6" x2="250" y2="6" class="energy-arrow-control energy-arrow-control-animated" marker-end="url(#arrowhead-control)"/>
-                <text x="130" y="4" text-anchor="middle" font-size="8" fill="#0891b2" font-weight="bold">VE.Can Control</text>
+            <!-- Control System to Inverter: (740,600) to (1000,360) -->
+            <svg class="energy-arrow" style="top: 360px; left: 740px; width: 260px; height: 240px;">
+                <path d="M 0 240 Q 130 120 260 0" class="energy-arrow-control" marker-end="url(#arrowhead-control)" fill="none"/>
+                <path d="M 0 240 Q 130 120 260 0" class="energy-flow-control" fill="none"/>
+                <text x="130" y="130" text-anchor="middle" font-size="8" fill="#0891b2" font-weight="bold">VE.Can Control</text>
+            </svg>
+            
+            <!-- Control System to MPPT: (580,520) to (580,260) - Vertical -->
+            <svg class="energy-arrow" style="top: 260px; left: 570px; width: 20px; height: 260px;">
+                <line x1="10" y1="260" x2="10" y2="0" class="energy-arrow-control" marker-end="url(#arrowhead-control)"/>
+                <line x1="10" y1="260" x2="10" y2="0" class="energy-flow-control"/>
+                <text x="25" y="130" font-size="8" fill="#0891b2" font-weight="bold" transform="rotate(-90 25 130)">MPPT Control</text>
             </svg>
         </div>
         
@@ -886,6 +943,7 @@
                 .diagram-container {
                     padding: 20px;
                     overflow-x: auto;
+                    min-width: 1200px;
                 }
                 
                 .component {
@@ -898,6 +956,34 @@
                 
                 .header h1 {
                     font-size: 2rem;
+                }
+                
+                .energy-arrow text {
+                    font-size: 7px;
+                }
+                
+                .energy-arrow-power {
+                    stroke-width: 1;
+                }
+                
+                .energy-arrow-control {
+                    stroke-width: 1;
+                }
+                
+                .energy-flow-power {
+                    stroke-width: 3;
+                    stroke-dasharray: 15 8;
+                }
+                
+                .energy-flow-control {
+                    stroke-width: 2.5;
+                    stroke-dasharray: 10 6;
+                }
+            }
+            
+            @media (max-width: 1400px) {
+                .energy-arrow text {
+                    font-size: 8px;
                 }
             }
             
